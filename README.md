@@ -1,2 +1,2 @@
 # vbox
-Virtualbox management scripts
+A set of Virtualbox management scripts.
