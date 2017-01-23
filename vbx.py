@@ -16,9 +16,9 @@ def read_parameter(argv):
     
     parser = argparse.ArgumentParser(description='Manages VirtualBox machines')
     parser.add_argument('-d', '--debug', action='store_true', default=False, help='if debugging and info messages should be shown (default=no)')
-    parser.add_argument('-n', '--nic', type=int, action='store', default=False, help='the network interface')
+    parser.add_argument('-n', '--nic', type=int, action='store', default=False, help='the network interface (1=Adapter 1)')
     parser.add_argument('machine', type=str, help='the name of the VM')
-    parser.add_argument('action', type=str, help='the folder to upload')
+    parser.add_argument('action', type=str, help='[start|stop]')
     args = parser.parse_args()
     
     return args
@@ -116,7 +116,7 @@ def main(argv):
         logging.error('machine "%s" not found' % args.machine)
         sys.exit(2)
     
-    filename = '%s/%s-nic%d.pcap' % (os.path.expanduser('~'), args.machine.replace(' ', ''), args.nic)
+    filename = '%s/%s-adp%d.pcap' % (os.path.expanduser('~'), args.machine.replace(' ', ''), args.nic)
     
     if args.action == "start":
         vm_save_state(uuid)
